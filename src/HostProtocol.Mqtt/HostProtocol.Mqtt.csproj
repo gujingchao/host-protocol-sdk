@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageId>HostProtocol.Mqtt</PackageId>
+    <Version>0.1.0</Version>
+    <Description>MQTT protocol adapter for host-station AcquisitionHub</Description>
+    <Authors>gujingchao</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/gujingchao/host-protocol-sdk</RepositoryUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HostProtocol.Abstractions\HostProtocol.Abstractions.csproj" />
+  </ItemGroup>
+</Project>

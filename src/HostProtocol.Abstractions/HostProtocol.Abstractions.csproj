@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageId>HostProtocol.Abstractions</PackageId>
+    <Version>0.1.0</Version>
+    <Description>Pluggable protocol adapter contracts for host-station AcquisitionHub</Description>
+    <Authors>gujingchao</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/gujingchao/host-protocol-sdk</RepositoryUrl>
+  </PropertyGroup>
+</Project>
