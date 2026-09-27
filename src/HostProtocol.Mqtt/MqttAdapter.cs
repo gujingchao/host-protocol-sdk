@@ -11,6 +11,12 @@ public sealed class MqttAdapterOptions
     public required Uri BrokerUri { get; init; }
     /// <summary>Topics to subscribe; each message maps to a tag (topic path or JSON "tag"/"value").</summary>
     public IReadOnlyList<string> Topics { get; init; } = ["factory/+/telemetry"];
+    /// <summary>
+    /// Upper bound on messages taken from the client per <see cref="MqttAdapter.PollAsync"/>, so one poll
+    /// never hands AcquisitionHub an unbounded batch after a burst. Buffer size and overflow policy
+    /// are configured on the <see cref="IMqttClient"/> (see <see cref="BoundedBufferOptions"/>).
+    /// </summary>
+    public int MaxBatchPerPoll { get; init; } = 1_000;
 }
 
 /// <summary>
@@ -25,11 +31,16 @@ public sealed class MqttAdapter : IProtocolAdapter
 
     public MqttAdapter(IMqttClient client, MqttAdapterOptions options)
     {
+        if (options.MaxBatchPerPoll <= 0)
+            throw new ArgumentOutOfRangeException(nameof(options), "MaxBatchPerPoll must be positive.");
         _client = client;
         _options = options;
     }
 
     public string Name => _options.Name;
+
+    /// <summary>Receive-buffer counters from the underlying client (watch Dropped for backpressure).</summary>
+    public BufferStats BufferStats => _client.BufferStats;
 
     public async Task ConnectAsync(CancellationToken cancellationToken = default)
     {
@@ -51,7 +62,7 @@ public sealed class MqttAdapter : IProtocolAdapter
         if (!_connected)
             throw new InvalidOperationException($"{Name} is not connected.");
 
-        var messages = _client.Drain();
+        var messages = _client.Drain(maxBatch: _options.MaxBatchPerPoll);
         var samples = new List<TagSample>(messages.Count);
         foreach (var msg in messages)
         {
