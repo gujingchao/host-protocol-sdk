@@ -42,6 +42,12 @@ public class ParseErrorTests
     [InlineData("""{not json""")]
     [InlineData("NaN")]
     [InlineData("hello")]
+    [InlineData("""{"tag":"\ud800","value":1}""")]
+    [InlineData("""{"tag":"\ud800"}""")]
+    [InlineData("""{"value":1,"quality":"\udc00"}""")]
+    [InlineData("""{"tag":"A","value":"\ud800"}""")]
+    [InlineData("""{"tag":"A","value":"1\udc00"}""")]
+    [InlineData("""{"tag":"A","value":1e400}""")]
     public async Task Bad_message_is_skipped_alone_and_counted(string bad)
     {
         var (client, adapter) = await CreateAsync();

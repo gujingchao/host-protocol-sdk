@@ -105,8 +105,11 @@ public sealed class MqttAdapter : IProtocolAdapter
                 sample = new TagSample(tag!, value, msg.ReceivedAt, quality);
                 return true;
             }
-            catch (JsonException)
+            catch (Exception ex) when (ex is JsonException or InvalidOperationException)
             {
+                // JsonException: not valid JSON.
+                // InvalidOperationException: GetString() on a string with a lone surrogate escape
+                // such as "\ud800" (valid JSON, but not valid UTF-16). Both are per-message parse errors.
                 return false;
             }
         }
