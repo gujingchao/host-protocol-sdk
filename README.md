@@ -28,6 +28,9 @@ var samples = await adapter.PollAsync(); // feed into AcquisitionHub
 
 Payloads: plain number, or JSON `{"tag","value","quality?"}`.
 
+The receive buffer is bounded (default 10 000 messages, `DropOldest`) and each poll returns at most
+`MaxBatchPerPoll` samples (default 1 000). See [docs/backpressure.md](docs/backpressure.md).
+
 ## Build / test
 
 ```bash

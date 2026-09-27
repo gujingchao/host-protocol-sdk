@@ -1,4 +1,3 @@
-using System.Collections.Concurrent;
 using System.Text;
 using HostProtocol.Abstractions;
 
@@ -7,11 +6,18 @@ namespace HostProtocol.Mqtt;
 /// <summary>Test/demo MQTT client — no real broker required.</summary>
 public sealed class InMemoryMqttClient : IMqttClient
 {
-    private readonly ConcurrentQueue<MqttMessage> _inbox = new();
+    private readonly BoundedMessageBuffer _inbox;
     private readonly HashSet<string> _subs = new(StringComparer.Ordinal);
     private bool _connected;
 
+    public InMemoryMqttClient(BoundedBufferOptions? buffer = null)
+    {
+        _inbox = new BoundedMessageBuffer(buffer);
+    }
+
     public bool IsConnected => _connected;
+
+    public BufferStats BufferStats => _inbox.Stats;
 
     public Task ConnectAsync(Uri brokerUri, CancellationToken cancellationToken = default)
     {
@@ -36,7 +42,7 @@ public sealed class InMemoryMqttClient : IMqttClient
     {
         EnsureConnected();
         if (IsSubscribed(topic))
-            _inbox.Enqueue(new MqttMessage(topic, payload.ToArray(), DateTimeOffset.UtcNow));
+            _inbox.Write(new MqttMessage(topic, payload.ToArray(), DateTimeOffset.UtcNow));
         return Task.CompletedTask;
     }
 
@@ -44,24 +50,11 @@ public sealed class InMemoryMqttClient : IMqttClient
     public void Inject(string topic, string payload)
     {
         if (IsSubscribed(topic))
-            _inbox.Enqueue(new MqttMessage(topic, Encoding.UTF8.GetBytes(payload), DateTimeOffset.UtcNow));
+            _inbox.Write(new MqttMessage(topic, Encoding.UTF8.GetBytes(payload), DateTimeOffset.UtcNow));
     }
 
-    public IReadOnlyList<MqttMessage> Drain(string? topic = null)
-    {
-        var kept = new List<MqttMessage>();
-        var matched = new List<MqttMessage>();
-        while (_inbox.TryDequeue(out var msg))
-        {
-            if (topic is null || msg.Topic == topic)
-                matched.Add(msg);
-            else
-                kept.Add(msg);
-        }
-        foreach (var m in kept)
-            _inbox.Enqueue(m);
-        return matched;
-    }
+    public IReadOnlyList<MqttMessage> Drain(string? topic = null, int maxBatch = int.MaxValue)
+        => _inbox.Drain(topic, maxBatch);
 
     public ValueTask DisposeAsync()
     {
