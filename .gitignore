@@ -5,3 +5,5 @@ obj/
 *.suo
 TestResults/
 *.nupkg
+node_modules/
+dist/
