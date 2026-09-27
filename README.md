@@ -28,6 +28,11 @@ var samples = await adapter.PollAsync(); // feed into AcquisitionHub
 
 Payloads: plain number, or JSON `{"tag","value","quality?"}`.
 
+## Examples
+
+- [`examples/monitor-web`](examples/monitor-web/) — Vue 3 + mqtt.js (WebSocket) monitor page that parses payloads exactly like `MqttAdapter` into `TagSample`s: tag table with quality highlighting, per-tag sparklines, dropped-message log, and a broker-less demo mode.
+- [`examples/mqtt-broker`](examples/mqtt-broker/) — notes on pointing the adapter at a real broker.
+
 ## Build / test
 
 ```bash
