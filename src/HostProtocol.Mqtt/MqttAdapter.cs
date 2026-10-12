@@ -21,13 +21,15 @@ public sealed class MqttAdapterOptions
 
 /// <summary>
 /// MQTT → TagSample adapter for AcquisitionHub.
-/// Payload: plain number, or JSON {"tag":"...","value":1.23,"quality":"Good"}.
+/// Payload: plain number, or JSON {"tag":"...","value":1.23,"quality":"Good"}; "value" may also be a numeric string.
+/// Malformed messages are skipped one by one and counted in <see cref="ParseErrors"/>.
 /// </summary>
 public sealed class MqttAdapter : IProtocolAdapter
 {
     private readonly IMqttClient _client;
     private readonly MqttAdapterOptions _options;
     private bool _connected;
+    private long _parseErrors;
 
     public MqttAdapter(IMqttClient client, MqttAdapterOptions options)
     {
@@ -41,6 +43,13 @@ public sealed class MqttAdapter : IProtocolAdapter
 
     /// <summary>Receive-buffer counters from the underlying client (watch Dropped for backpressure).</summary>
     public BufferStats BufferStats => _client.BufferStats;
+
+    /// <summary>
+    /// Messages skipped because the payload was malformed (bad JSON, wrong field types, non-numeric or
+    /// non-finite value). Separate from <see cref="BufferStats"/>.Dropped, which counts backpressure loss.
+    /// A bad message is skipped on its own; the rest of the batch is still returned.
+    /// </summary>
+    public long ParseErrors => Interlocked.Read(ref _parseErrors);
 
     public async Task ConnectAsync(CancellationToken cancellationToken = default)
     {
@@ -68,6 +77,8 @@ public sealed class MqttAdapter : IProtocolAdapter
         {
             if (TryParse(msg, out var sample))
                 samples.Add(sample);
+            else
+                Interlocked.Increment(ref _parseErrors);
         }
         return Task.FromResult<IReadOnlyList<TagSample>>(samples);
     }
@@ -84,25 +95,64 @@ public sealed class MqttAdapter : IProtocolAdapter
             {
                 using var doc = JsonDocument.Parse(text);
                 var root = doc.RootElement;
-                var tag = root.TryGetProperty("tag", out var t) ? t.GetString() : msg.Topic;
+                if (root.ValueKind != JsonValueKind.Object) return false;
+
+                if (!TryReadOptionalString(root, "tag", msg.Topic, out var tag, nullResult: msg.Topic)) return false;
                 if (string.IsNullOrWhiteSpace(tag)) tag = msg.Topic;
-                if (!root.TryGetProperty("value", out var v) || !v.TryGetDouble(out var value))
-                    return false;
-                var quality = root.TryGetProperty("quality", out var q) ? q.GetString() : "Good";
+                if (!root.TryGetProperty("value", out var v) || !TryReadNumber(v, out var value)) return false;
+                if (!TryReadOptionalString(root, "quality", "Good", out var quality, nullResult: null)) return false;
+
                 sample = new TagSample(tag!, value, msg.ReceivedAt, quality);
                 return true;
             }
-            catch (JsonException)
+            catch (Exception ex) when (ex is JsonException or InvalidOperationException)
             {
+                // JsonException: not valid JSON.
+                // InvalidOperationException: GetString() on a string with a lone surrogate escape
+                // such as "\ud800" (valid JSON, but not valid UTF-16). Both are per-message parse errors.
                 return false;
             }
         }
 
-        if (double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out var plain))
+        if (TryParseFinite(text, out var plain))
         {
             sample = new TagSample(msg.Topic, plain, msg.ReceivedAt, "Good");
             return true;
         }
         return false;
     }
+
+    /// <summary>Number, or a numeric string such as "1.5" (InvariantCulture). Anything else is a parse error.</summary>
+    private static bool TryReadNumber(JsonElement v, out double value)
+    {
+        value = 0;
+        return v.ValueKind switch
+        {
+            JsonValueKind.Number => v.TryGetDouble(out value) && double.IsFinite(value),
+            JsonValueKind.String => TryParseFinite(v.GetString()!, out value),
+            _ => false,
+        };
+    }
+
+    /// <summary>Missing uses <paramref name="fallback"/>, JSON null uses <paramref name="nullResult"/>,
+    /// a string is used as-is; any other JSON kind is a parse error.</summary>
+    private static bool TryReadOptionalString(JsonElement root, string name, string fallback, out string? result, string? nullResult)
+    {
+        result = fallback;
+        if (!root.TryGetProperty(name, out var e)) return true;
+        switch (e.ValueKind)
+        {
+            case JsonValueKind.Null:
+                result = nullResult;
+                return true;
+            case JsonValueKind.String:
+                result = e.GetString()!;
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private static bool TryParseFinite(string text, out double value) =>
+        double.TryParse(text.Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out value) && double.IsFinite(value);
 }

@@ -26,7 +26,7 @@ client.Inject("factory/line1/temp", """{"tag":"TEMP","value":36.5}""");
 var samples = await adapter.PollAsync(); // feed into AcquisitionHub
 ```
 
-Payloads: plain number, or JSON `{"tag","value","quality?"}`.
+Payloads: plain number, or JSON `{"tag","value","quality?"}` (`value` may also be a numeric string like `"1.5"`). NaN/Infinity and wrongly typed fields are skipped per message and counted in `MqttAdapter.ParseErrors`, separate from backpressure `BufferStats.Dropped`.
 
 The receive buffer is bounded (default 10 000 messages, `DropOldest`) and each poll returns at most
 `MaxBatchPerPoll` samples (default 1 000). See [docs/backpressure.md](docs/backpressure.md).
