@@ -60,7 +60,11 @@ export function useMqttConnection(onMessage: (m: MqttMessage) => void) {
 
   function persist() {
     const { password: _pw, clientId: _id, ...rest } = settings // don't store the password
-    localStorage.setItem(LS_KEY, JSON.stringify({ settings: rest, topics: subscriptions.value.map((s) => s.filter) }))
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify({ settings: rest, topics: subscriptions.value.map((s) => s.filter) }))
+    } catch {
+      // Persistence is optional: blocked or full storage must not interrupt MQTT operations.
+    }
   }
 
   function doSubscribe(sub: Subscription) {
@@ -95,6 +99,7 @@ export function useMqttConnection(onMessage: (m: MqttMessage) => void) {
       clean: true,
       connectTimeout: 10_000,
       reconnectPeriod: settings.autoReconnect ? 3_000 : 0,
+      reconnectOnConnackError: settings.autoReconnect,
       resubscribe: false, // we re-subscribe ourselves on every 'connect' to keep per-topic state accurate
       username: settings.username || undefined,
       password: settings.password || undefined,
