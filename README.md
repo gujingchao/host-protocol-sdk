@@ -31,6 +31,11 @@ Payloads: plain number, or JSON `{"tag","value","quality?"}` (`value` may also b
 The receive buffer is bounded (default 10 000 messages, `DropOldest`) and each poll returns at most
 `MaxBatchPerPoll` samples (default 1 000). See [docs/backpressure.md](docs/backpressure.md).
 
+## Examples
+
+- [`examples/monitor-web`](examples/monitor-web/) — Vue 3 + mqtt.js (WebSocket) monitor page that parses payloads exactly like `MqttAdapter` into `TagSample`s: tag table with quality highlighting, per-tag sparklines, dropped-message log, and a broker-less demo mode.
+- [`examples/mqtt-broker`](examples/mqtt-broker/) — notes on pointing the adapter at a real broker.
+
 ## Build / test
 
 ```bash

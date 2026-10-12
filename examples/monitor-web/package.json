@@ -1,0 +1,32 @@
+{
+  "name": "host-protocol-monitor-web",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Vue 3 MQTT-over-WebSocket monitor that mirrors HostProtocol.Mqtt MqttAdapter payload parsing",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "vue-tsc -b"
+  },
+  "dependencies": {
+    "mqtt": "^5.16.0",
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/tsconfig": "^0.8.1",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.0",
+    "vitest": "^4.0.0",
+    "vue-tsc": "^3.1.0"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
+}

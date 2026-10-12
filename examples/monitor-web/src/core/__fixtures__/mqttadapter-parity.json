@@ -1,0 +1,1123 @@
+[
+  {
+    "name": "plain integer",
+    "topic": "factory/line1/press",
+    "payloadBase64": "NDI=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 42,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain decimal",
+    "topic": "factory/line1/press",
+    "payloadBase64": "Mi40",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 2.4,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain negative",
+    "topic": "factory/line1/press",
+    "payloadBase64": "LTEuNQ==",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": -1.5,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain leading plus",
+    "topic": "factory/line1/press",
+    "payloadBase64": "KzI=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 2,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain leading dot",
+    "topic": "factory/line1/press",
+    "payloadBase64": "LjU=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 0.5,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain trailing dot",
+    "topic": "factory/line1/press",
+    "payloadBase64": "NS4=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 5,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain exponent",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MWUz",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 1000,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain exponent upper signed",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MS41RS0z",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 0.0015,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain surrounded by whitespace",
+    "topic": "factory/line1/press",
+    "payloadBase64": "ICAJMy4yNQ0K",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 3.25,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain with NEL/NBSP around (.NET whitespace)",
+    "topic": "factory/line1/press",
+    "payloadBase64": "woXCoDfCoA==",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 7,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain with trailing NUL chars",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MTIAAA==",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 12,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain NaN",
+    "topic": "factory/line1/press",
+    "payloadBase64": "TmFO",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": "NaN",
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain nan lowercase",
+    "topic": "factory/line1/press",
+    "payloadBase64": "bmFu",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": "NaN",
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain Infinity",
+    "topic": "factory/line1/press",
+    "payloadBase64": "SW5maW5pdHk=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": "Infinity",
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain -infinity lowercase",
+    "topic": "factory/line1/press",
+    "payloadBase64": "LWluZmluaXR5",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": "-Infinity",
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain +Infinity",
+    "topic": "factory/line1/press",
+    "payloadBase64": "K0luZmluaXR5",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": "Infinity",
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain -NaN",
+    "topic": "factory/line1/press",
+    "payloadBase64": "LU5hTg==",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": "NaN",
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain overflow 1e400",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MWU0MDA=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": "Infinity",
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain infinity symbol",
+    "topic": "factory/line1/press",
+    "payloadBase64": "4oie",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain hex rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MHgxMA==",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain thousands rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MSwwMDA=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain underscore rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MV8wMDA=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain two dots rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MS4yLjM=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain dangling exponent rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MWU=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain lone dot rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "Lg==",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain lone sign rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "LQ==",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain inner space rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MSAy",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain comma decimal rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "Miw1",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain text rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "aGVsbG8=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain true rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "dHJ1ZQ==",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "empty payload",
+    "topic": "factory/line1/press",
+    "payloadBase64": "",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "whitespace-only payload",
+    "topic": "factory/line1/press",
+    "payloadBase64": "ICANCiA=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "BOM + number (BOM not stripped)",
+    "topic": "factory/line1/press",
+    "payloadBase64": "77u/MTI=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "BOM + JSON (BOM not stripped)",
+    "topic": "factory/line1/press",
+    "payloadBase64": "77u/eyJ2YWx1ZSI6MX0=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "invalid UTF-8 bytes",
+    "topic": "factory/line1/press",
+    "payloadBase64": "//4x",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json full",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJURU1QIiwidmFsdWUiOjM2LjUsInF1YWxpdHkiOiJHb29kIn0=",
+    "expected": {
+      "kind": "sample",
+      "tag": "TEMP",
+      "value": 36.5,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json no quality -> Good",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJURU1QIiwidmFsdWUiOjM2LjV9",
+    "expected": {
+      "kind": "sample",
+      "tag": "TEMP",
+      "value": 36.5,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json custom quality",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJURU1QIiwidmFsdWUiOjEsInF1YWxpdHkiOiJCYWQifQ==",
+    "expected": {
+      "kind": "sample",
+      "tag": "TEMP",
+      "value": 1,
+      "negZero": false,
+      "quality": "Bad"
+    }
+  },
+  {
+    "name": "json quality null -> null",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJURU1QIiwidmFsdWUiOjEsInF1YWxpdHkiOm51bGx9",
+    "expected": {
+      "kind": "sample",
+      "tag": "TEMP",
+      "value": 1,
+      "negZero": false,
+      "quality": null
+    }
+  },
+  {
+    "name": "json quality empty string kept",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJURU1QIiwidmFsdWUiOjEsInF1YWxpdHkiOiIifQ==",
+    "expected": {
+      "kind": "sample",
+      "tag": "TEMP",
+      "value": 1,
+      "negZero": false,
+      "quality": ""
+    }
+  },
+  {
+    "name": "json no tag -> topic",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6N30=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 7,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json tag null -> topic",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOm51bGwsInZhbHVlIjo3fQ==",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 7,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json tag empty -> topic",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiIiLCJ2YWx1ZSI6N30=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 7,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json tag whitespace -> topic",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiIgICIsInZhbHVlIjo3fQ==",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 7,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json tag not trimmed",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiIgQSAiLCJ2YWx1ZSI6N30=",
+    "expected": {
+      "kind": "sample",
+      "tag": " A ",
+      "value": 7,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json keys case-sensitive (Tag/Value ignored)",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJUYWciOiJBIiwiVmFsdWUiOjd9",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json key Tag ignored but value ok",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJUYWciOiJBIiwidmFsdWUiOjd9",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 7,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json duplicate keys last wins",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJBIiwidGFnIjoiQiIsInZhbHVlIjoxLCJ2YWx1ZSI6Mn0=",
+    "expected": {
+      "kind": "sample",
+      "tag": "B",
+      "value": 2,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json extra fields ignored",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJBIiwidmFsdWUiOjEsInVuaXQiOiJDIiwidHMiOjEyM30=",
+    "expected": {
+      "kind": "sample",
+      "tag": "A",
+      "value": 1,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json leading whitespace",
+    "topic": "factory/line1/press",
+    "payloadBase64": "ICAgeyJ2YWx1ZSI6M30=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 3,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json integer value",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MTB9",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 10,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json negative exponent value",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6LTEuNWUtMn0=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": -0.015,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json negative zero",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6LTB9",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": -0,
+      "negZero": true,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json missing value rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJBIn0=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json value overflow -> Infinity",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MWU0MDB9",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": "Infinity",
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json empty object rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "e30=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json value string throws",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJBIiwidmFsdWUiOiIxLjUifQ==",
+    "expected": {
+      "kind": "error",
+      "exception": "InvalidOperationException"
+    }
+  },
+  {
+    "name": "json value null throws",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6bnVsbH0=",
+    "expected": {
+      "kind": "error",
+      "exception": "InvalidOperationException"
+    }
+  },
+  {
+    "name": "json value bool throws",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6dHJ1ZX0=",
+    "expected": {
+      "kind": "error",
+      "exception": "InvalidOperationException"
+    }
+  },
+  {
+    "name": "json value object throws",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6e319",
+    "expected": {
+      "kind": "error",
+      "exception": "InvalidOperationException"
+    }
+  },
+  {
+    "name": "json tag number throws",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOjUsInZhbHVlIjoxfQ==",
+    "expected": {
+      "kind": "error",
+      "exception": "InvalidOperationException"
+    }
+  },
+  {
+    "name": "json tag number throws even without value",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOjV9",
+    "expected": {
+      "kind": "error",
+      "exception": "InvalidOperationException"
+    }
+  },
+  {
+    "name": "json quality number throws",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MSwicXVhbGl0eSI6MTkyfQ==",
+    "expected": {
+      "kind": "error",
+      "exception": "InvalidOperationException"
+    }
+  },
+  {
+    "name": "json quality number but no value rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJxdWFsaXR5IjoxOTJ9",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json malformed rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJBIiwidmFsdWUiOn0=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json truncated rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJBIiwidmFsdWUiOjE=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json trailing comma rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MSx9",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json comment rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MSAvKiBjICovfQ==",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json single quotes rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyd2YWx1ZSc6MX0=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json trailing garbage rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MX0geA==",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json two objects rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MX17InZhbHVlIjoyfQ==",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json NaN literal rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6TmFOfQ==",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json leading zero rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MDF9",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json array root not treated as json",
+    "topic": "factory/line1/press",
+    "payloadBase64": "WzFd",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json depth 64 ok",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MSwieCI6W1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dfQ==",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 1,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json depth 65 rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MSwieCI6W1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW11dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV19",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "quoted number is not JSON path",
+    "topic": "factory/line1/press",
+    "payloadBase64": "IjEyIg==",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain negative zero",
+    "topic": "factory/line1/press",
+    "payloadBase64": "LTA=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": -0,
+      "negZero": true,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain leading zeros",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MDAwMTI=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 12,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain underflow -> 0",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MWUtNDAw",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 0,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain ideographic space around",
+    "topic": "factory/line1/press",
+    "payloadBase64": "44CAOeOAgA==",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 9,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain trailing BOM rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MTLvu78=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain long digits",
+    "topic": "factory/line1/press",
+    "payloadBase64": "My4xNDE1OTI2NTM1ODk3OTMyMzg0NjI2NDMzODMyNzk1MDI4OA==",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 3.141592653589793,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json unicode escape tag",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJcdTAwNDFcdTZFMjkiLCJ2YWx1ZSI6MX0=",
+    "expected": {
+      "kind": "sample",
+      "tag": "A温",
+      "value": 1,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json non-BMP tag",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiLwn5SlIiwidmFsdWUiOjF9",
+    "expected": {
+      "kind": "sample",
+      "tag": "\uD83D\uDD25",
+      "value": 1,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json lone surrogate tag escape",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJcdWQ4MDAiLCJ2YWx1ZSI6MX0=",
+    "expected": {
+      "kind": "error",
+      "exception": "InvalidOperationException"
+    }
+  },
+  {
+    "name": "json raw newline in string rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJhCmIiLCJ2YWx1ZSI6MX0=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json brackets inside strings do not count toward depth",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbW1tbIiwidmFsdWUiOjF9",
+    "expected": {
+      "kind": "sample",
+      "tag": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[",
+      "value": 1,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json depth counted with objects",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjoxfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19LCJ2YWx1ZSI6MX0=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 1,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json depth 65 via objects rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOnsiYSI6eyJhIjp7ImEiOjF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19LCJ2YWx1ZSI6MX0=",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "json value NaN string throws",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6Ik5hTiJ9",
+    "expected": {
+      "kind": "error",
+      "exception": "InvalidOperationException"
+    }
+  },
+  {
+    "name": "json tag array throws",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOlsiQSJdLCJ2YWx1ZSI6MX0=",
+    "expected": {
+      "kind": "error",
+      "exception": "InvalidOperationException"
+    }
+  },
+  {
+    "name": "json tag bool throws",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOnRydWUsInZhbHVlIjoxfQ==",
+    "expected": {
+      "kind": "error",
+      "exception": "InvalidOperationException"
+    }
+  },
+  {
+    "name": "json value exponent upper",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MkUrMn0=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 200,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json whitespace inside",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyAidGFnIiA6ICJBIiAsCiAidmFsdWUiIDoJNSB9",
+    "expected": {
+      "kind": "sample",
+      "tag": "A",
+      "value": 5,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json with .NET-only trailing whitespace (NEL)",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MX3ChQ==",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 1,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json with ideographic space prefix",
+    "topic": "factory/line1/press",
+    "payloadBase64": "44CAeyJ2YWx1ZSI6MX0=",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 1,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain value with custom topic",
+    "topic": "a/b/c",
+    "payloadBase64": "NQ==",
+    "expected": {
+      "kind": "sample",
+      "tag": "a/b/c",
+      "value": 5,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json no tag with custom topic",
+    "topic": "plant/+/weird#topic",
+    "payloadBase64": "eyJ2YWx1ZSI6NX0=",
+    "expected": {
+      "kind": "sample",
+      "tag": "plant/+/weird#topic",
+      "value": 5,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json lone surrogate in quality throws",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MSwicXVhbGl0eSI6Ilx1ZGMwMCJ9",
+    "expected": {
+      "kind": "error",
+      "exception": "InvalidOperationException"
+    }
+  },
+  {
+    "name": "json lone surrogate in ignored field ok",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ2YWx1ZSI6MSwidW5pdCI6Ilx1ZDgwMCJ9",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 1,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json lone surrogate tag without value throws",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJcdWQ4MDAifQ==",
+    "expected": {
+      "kind": "error",
+      "exception": "InvalidOperationException"
+    }
+  },
+  {
+    "name": "json escaped property names match",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0XHUwMDYxZyI6IkUiLCJ2XHUwMDYxbHVlIjo0fQ==",
+    "expected": {
+      "kind": "sample",
+      "tag": "E",
+      "value": 4,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "json surrogate pair escape ok",
+    "topic": "factory/line1/press",
+    "payloadBase64": "eyJ0YWciOiJcdWQ4M2RcdWRkMjUiLCJ2YWx1ZSI6MX0=",
+    "expected": {
+      "kind": "sample",
+      "tag": "\uD83D\uDD25",
+      "value": 1,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain dotless-i infinity (OrdinalIgnoreCase)",
+    "topic": "factory/line1/press",
+    "payloadBase64": "xLFuZmluaXR5",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain mixed-case nAn",
+    "topic": "factory/line1/press",
+    "payloadBase64": "bkFu",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": "NaN",
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain NaN with trailing NUL rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "TmFOAA==",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain trailing space then NUL",
+    "topic": "factory/line1/press",
+    "payloadBase64": "MTIgAA==",
+    "expected": {
+      "kind": "sample",
+      "tag": "factory/line1/press",
+      "value": 12,
+      "negZero": false,
+      "quality": "Good"
+    }
+  },
+  {
+    "name": "plain full-width digits rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "77yR77yS",
+    "expected": {
+      "kind": "rejected"
+    }
+  },
+  {
+    "name": "plain arabic-indic digits rejected",
+    "topic": "factory/line1/press",
+    "payloadBase64": "2aE=",
+    "expected": {
+      "kind": "rejected"
+    }
+  }
+]
